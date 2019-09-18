@@ -1,0 +1,40 @@
+group 'coding'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+}
+
+allProjects {
+    apply plugin: 'java'
+    apply plugin: 'scala'
+
+
+    compileScala.setSourceCompatibility("1.7")
+    compileScala.setTargetCompatibility("1.7")
+    targetCompatibility = 1.8
+    sourceCompatibility = 1.8
+
+    dependencies {
+        compile 'org.scala-lang:scala-library:2.11.0'
+    }
+    sourceSets.main.scala.srcDirs = ["src/main/java", "src/main/scala"]
+  sourceSets.main.java.srcDirs = []
+    sourceSets.test.scala.srcDirs = ["src/test/java", "src/test/scala"]
+    sourceSets.test.java.srcDirs = []
+
+    idea {
+        module {
+            downloadSources = true
+        }
+    }
+}
